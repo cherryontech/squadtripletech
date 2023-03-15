@@ -12,6 +12,9 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.8",
+    "eventsource-parser": "^0.1.0",
+    "node-html-parser": "^6.1.4",
     "vue": "^3.2.45"
   },
   "devDependencies": {
@@ -29,6 +32,7 @@
     "@vue/test-utils": "^2.2.6",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",
+    "dotenv": "^16.0.3",
     "eslint": "^8.22.0",
     "eslint-plugin-storybook": "^0.6.11",
     "eslint-plugin-vue": "^9.3.0",
