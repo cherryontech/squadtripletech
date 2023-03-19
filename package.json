@@ -9,7 +9,8 @@
     "test:unit": "vitest --environment jsdom --root src/",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=125161d52981"
   },
   "dependencies": {
     "vue": "^3.2.45"
@@ -29,6 +30,7 @@
     "@vue/test-utils": "^2.2.6",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",
+    "chromatic": "^6.17.2",
     "eslint": "^8.22.0",
     "eslint-plugin-storybook": "^0.6.11",
     "eslint-plugin-vue": "^9.3.0",
@@ -39,5 +41,7 @@
     "vite": "^4.0.0",
     "vitest": "^0.25.6",
     "vue-loader": "^16.8.3"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "squadtripletech@0.0.0"
 }
