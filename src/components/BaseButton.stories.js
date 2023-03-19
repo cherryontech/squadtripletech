@@ -10,7 +10,7 @@ const Template = (args) => ({
   setup() {
     return { args }
   },
-  template: `<BaseButton>What a nice label!</BaseButton>`,
+  template: `<BaseButton>What a nice button!</BaseButton>`,
 })
 
 export const Primary = Template.bind({})
