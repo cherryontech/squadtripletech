@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  button,
+  input,
+  textarea {
+    @apply focus:ring-offset-2;
+    @apply focus:ring-4 ;
+  }
+}

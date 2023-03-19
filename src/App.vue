@@ -1,19 +1,32 @@
 <template>
-  <main class="flex flex-col flex-wrap max-w-screen-md gap-4 mx-auto">
-    <div class="flex gap-4">
-      <StepInput
-        v-model:stepText="bio"
-        :stepNumber="1"
-        stepLabel="Step 1: Add your current pitch"
-        class="w-1/2"
-      />
+  <main class="flex flex-col gap-4 p-4 my-4 sm:px-10 lg:px-20">
+    <h1 class="mb-6">
+      <span class="block mb-2 text-2xl font-bold text-center lg:text-6xl"
+        >Pitch Pop Out</span
+      >
+      <span class="block text-center"
+        >Transform your resume summary into a personalized pop-out pitch!</span
+      >
+    </h1>
+    <div class="flex flex-col gap-24 sm:gap-20 lg:gap-4 lg:flex-row">
+      <StepInput v-model:stepText="bio" :stepNumber="1" class="w-full lg:w-1/2">
+        <template #stepSummary> Tell us about you. </template>
+        <template #stepDirections>
+          Write a few sentences about yourself or paste in your existing job
+          summary.
+        </template>
+      </StepInput>
 
       <StepInput
         v-model:stepText="jobDescription"
         :stepNumber="2"
-        stepLabel="Step 2: Paste a job description"
-        class="w-1/2"
-      />
+        class="w-full lg:w-1/2"
+      >
+        <template #stepSummary> Tell us about the job. </template>
+        <template #stepDirections>
+          Please enter the job description and include all the requirements.
+        </template>
+      </StepInput>
     </div>
     <BaseButton
       @click="getCompletion"
@@ -24,10 +37,17 @@
       {{ isLoading ? 'Loading...' : 'Generate your pitch' }}
     </BaseButton>
     <template v-if="result">
-      <h2>Your generated pitch</h2>
-      <p>
+      <h2 class="my-24 text-2xl font-bold text-center lg:my-36h md:my-20h">
+        Your generated pitch
+      </h2>
+      <p class="p-3 border-4 rounded-2xl">
         {{ result }}
       </p>
+    </template>
+    <template v-if="isLoading">
+      <h2 class="my-24 text-2xl font-bold text-center lg:my-36h md:my-20h">
+        Loading good stuff here (real loading spinner to come)...
+      </h2>
     </template>
   </main>
 </template>
@@ -46,13 +66,6 @@ const bio = ref('A chef with 6 years of experience in cooking steaks.')
 const result = ref('')
 
 const isLoading = ref(false)
-
-const moveScroll = () => {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: 'smooth',
-  })
-}
 
 const getCompletion = async () => {
   isLoading.value = true
@@ -92,8 +105,6 @@ const getCompletion = async () => {
   }
 
   isLoading.value = false
-
-  moveScroll()
 }
 
 onMounted(inject)
