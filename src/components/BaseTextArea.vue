@@ -1,6 +1,6 @@
 <template>
   <textarea
-    class="m-4 border"
+    class="mt-8 border-4 rounded-2xl"
     rows="4"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
