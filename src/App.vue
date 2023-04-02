@@ -1,14 +1,12 @@
 <template>
-  <main class="flex flex-col gap-4 p-4 my-4 sm:px-10 lg:px-20">
-    <h1 class="mb-6">
-      <span class="block mb-2 text-2xl font-bold text-center lg:text-6xl"
-        >Pitch Pop Out</span
-      >
-      <span class="block text-center"
-        >Transform your resume summary into a personalized pop-out pitch!</span
-      >
-    </h1>
-    <div class="flex flex-col gap-24 sm:gap-20 lg:gap-4 lg:flex-row">
+  <main
+    class="flex flex-col max-w-screen-xl gap-10 p-4 mx-auto my-4 sm:gap-20 lg:gap-40 sm:px-10 lg:px-20"
+  >
+    <!-- Header -->
+    <TheHeader />
+
+    <!-- Steps -->
+    <div class="flex flex-col gap-10 sm:gap-20 lg:gap-4 lg:flex-row">
       <StepInput v-model:stepText="bio" :stepNumber="1" class="w-full lg:w-1/2">
         <template #stepSummary> Tell us about you. </template>
         <template #stepDirections>
@@ -56,6 +54,7 @@
 import { inject } from '@vercel/analytics'
 import { onMounted, ref } from 'vue'
 
+import TheHeader from './components/TheHeader.vue'
 import BaseButton from './components/BaseButton.vue'
 import StepInput from './components/StepInput.vue'
 
