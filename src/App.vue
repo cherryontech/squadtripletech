@@ -26,27 +26,35 @@
         </template>
       </StepInput>
     </div>
+
+    <!-- Submit -->
     <BaseButton
       @click="getCompletion"
-      type="button"
-      :disabled="isLoading"
+      type="submit"
+      :isLoading="isLoading"
       class="w-full"
     >
       {{ isLoading ? 'Loading...' : 'Generate your pitch' }}
     </BaseButton>
-    <template v-if="result">
-      <h2 class="my-24 text-2xl font-bold text-center lg:my-36h md:my-20h">
-        Your generated pitch
-      </h2>
-      <p class="p-3 border-4 rounded-2xl">
-        {{ result }}
-      </p>
-    </template>
-    <template v-if="isLoading">
-      <h2 class="my-24 text-2xl font-bold text-center lg:my-36h md:my-20h">
-        Loading good stuff here (real loading spinner to come)...
-      </h2>
-    </template>
+
+    <h2 v-if="results.length" class="text-2xl font-bold text-center">
+      Your generated pitches
+    </h2>
+
+    <ResultCardLoading v-if="isLoading" class="w-full" />
+
+    <!-- Results -->
+    <ul v-if="results.length">
+      <ResultCard
+        v-for="(result, index) in results"
+        :key="index"
+        :tag="li"
+        class="flex flex-col-reverse border-4 border-neutral-200 rounded-2xl"
+        :time="result.generatedAt"
+        :text="result.text"
+        :order="results.length - index"
+      />
+    </ul>
   </main>
 </template>
 
@@ -57,19 +65,22 @@ import { onMounted, ref } from 'vue'
 import TheHeader from './components/TheHeader.vue'
 import BaseButton from './components/BaseButton.vue'
 import StepInput from './components/StepInput.vue'
+import ResultCardLoading from './components/ResultCardLoading.vue'
+import ResultCard from './components/ResultCard.vue'
 
 const jobDescription = ref(
-  'A talented vegan chef who likes cooking desserts and has 78 years of experience.'
+  'Ex: A talented vegan chef who likes cooking desserts and has 78 years of experience.'
 )
-const bio = ref('A chef with 6 years of experience in cooking steaks.')
-const result = ref('')
+const bio = ref('Ex: A chef with 6 years of experience in cooking steaks.')
+
+const results = ref([])
 
 const isLoading = ref(false)
 
 const getCompletion = async () => {
-  isLoading.value = true
+  if (isLoading.value) return
 
-  result.value = ''
+  isLoading.value = true
 
   const response = await fetch('/api/generate', {
     method: 'POST',
@@ -85,7 +96,6 @@ const getCompletion = async () => {
   if (!response.ok) {
     throw new Error(response.statusText)
   }
-
   const data = response.body
   if (!data) {
     return
@@ -95,16 +105,27 @@ const getCompletion = async () => {
   const decoder = new TextDecoder()
 
   let done = false
+  const currentResultText = ref('')
 
   while (!done) {
     const { value, done: doneReading } = await reader.read()
+
     done = doneReading
+
     const chunkValue = decoder.decode(value)
-    result.value += chunkValue
+
+    currentResultText.value += chunkValue
   }
+
+  // Create and add a new pitch
+  results.value.unshift({
+    generatedAt: new Date().toLocaleTimeString(),
+    text: currentResultText.value,
+  })
 
   isLoading.value = false
 }
 
+// Bring in Vercel for edge functions.
 onMounted(inject)
 </script>
