@@ -48,7 +48,7 @@
       <ResultCard
         v-for="(result, index) in results"
         :key="index"
-        :tag="li"
+        tag="li"
         class="flex flex-col-reverse border-4 border-neutral-200 rounded-2xl"
         :time="result.generatedAt"
         :text="result.text"
