@@ -10,8 +10,20 @@ const Template = (args) => ({
   setup() {
     return { args }
   },
-  template: `<BaseButton>What a nice button!</BaseButton>`,
+  template: `
+    <BaseButton v-bind="args">
+      <span v-if="!args.isLoading">What a nice button!</span>
+      <span v-else>Nice loading text...</span>
+    </BaseButton>
+  `,
 })
 
 export const Primary = Template.bind({})
-Primary.args = {}
+Primary.args = {
+  isLoading: false,
+}
+
+export const LoadingState = Template.bind({})
+LoadingState.args = {
+  isLoading: true,
+}
