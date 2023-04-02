@@ -3,7 +3,7 @@ import BaseLabel from './BaseLabel.vue';
 <template>
   <div class="flex flex-col justify-between">
     <BaseLabel :for="stepId" class="flex">
-      <span class="mr-9 md:mr-14 lg:mr-16">
+      <span class="mr-9 sm:mr-14 lg:mr-16">
         <StepNumber :stepNumber="stepNumber" />
       </span>
       <span>
@@ -17,7 +17,7 @@ import BaseLabel from './BaseLabel.vue';
     <BaseTextArea
       :id="stepId"
       :modelValue="stepText"
-      class="p-2"
+      class="h-40 p-2 sm:h-64 lg:h-72"
       @input="$emit('update:stepText', $event.target.value)"
     />
   </div>
