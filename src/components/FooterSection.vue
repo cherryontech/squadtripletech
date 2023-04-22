@@ -27,10 +27,10 @@ const themeIcon = computed(() => {
   switch (props.theme) {
     case 'info':
     default:
-      return '../assets/images/icon-info.png'
+      return new URL('@/assets/images/icon-info.png', import.meta.url).href
 
     case 'mail':
-      return '../assets/images/icon-envelope.png'
+      return new URL('@/assets/images/icon-envelope.png', import.meta.url).href
   }
 })
 </script>
