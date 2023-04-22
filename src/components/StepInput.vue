@@ -2,7 +2,7 @@ import BaseLabel from './BaseLabel.vue';
 
 <template>
   <div class="flex flex-col justify-between">
-    <BaseLabel :for="stepId" class="flex">
+    <BaseLabel :for="stepId" class="flex items-start">
       <span
         class="mr-9 sm:mr-14 lg:mr-16"
         :class="
