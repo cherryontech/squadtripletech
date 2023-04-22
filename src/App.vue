@@ -86,7 +86,7 @@
 
     <ResultCardLoading v-if="isLoading" class="w-full" />
 
-    <ul v-if="results.length">
+    <ul v-if="results.length" class="flex flex-col gap-10 sm:gap-20 lg:gap-40">
       <ResultCard
         v-for="(result, index) in results"
         :key="index"
