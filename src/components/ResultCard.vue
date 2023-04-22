@@ -6,14 +6,6 @@
     <h3
       class="flex justify-end px-6 py-4 font-bold sm:justify-between bg-neutral-200"
     >
-      <span class="hidden sm:inline-block">
-        <img
-          src="../assets/images/icon-clock.png"
-          role="presentation"
-          class="inline h-6 mr-3"
-        />
-        Generated at {{ time }}
-      </span>
       <span>Job Description #{{ order }}</span>
     </h3>
     <p class="px-6 pt-4 pb-6">{{ text }}</p>
@@ -25,10 +17,6 @@ defineProps({
   tag: {
     type: String,
     default: 'li',
-  },
-  time: {
-    type: String,
-    required: true,
   },
   order: {
     type: [String, Number],
