@@ -86,13 +86,12 @@
 
     <ResultCardLoading v-if="isLoading" class="w-full" />
 
-    <ul v-if="results.length">
+    <ul v-if="results.length" class="flex flex-col gap-10 sm:gap-20 lg:gap-40">
       <ResultCard
         v-for="(result, index) in results"
         :key="index"
         tag="li"
         class="flex flex-col-reverse border-4 border-neutral-200 rounded-2xl"
-        :time="result.generatedAt"
         :text="result.text"
         :order="results.length - index"
       />
@@ -190,7 +189,6 @@ const getCompletion = async () => {
 
   // Create and add a new pitch
   results.value.unshift({
-    generatedAt: new Date().toLocaleTimeString(),
     text: currentResultText.value,
   })
 
