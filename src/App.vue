@@ -1,30 +1,31 @@
 <template>
+  <!-- Header -->
+  <TheHeader class="max-w-screen-xl mx-auto mt-4 sm:px-10 lg:px-20" />
+
   <main
-    class="flex flex-col max-w-screen-xl gap-10 p-4 mx-auto my-4 sm:gap-20 lg:gap-40 sm:px-10 lg:px-20"
+    class="flex flex-col max-w-screen-xl gap-10 p-4 mx-auto sm:gap-20 lg:gap-40 sm:px-10 lg:px-20"
+    :class="hasAnyErrors ? 'mt-6 sm:mt-10' : 'mt-10 sm:mt-20 lg:mt-40'"
   >
-    <!-- Header -->
-    <TheHeader />
-
-    <!-- Form errors -->
-    <BaseNotification
-      v-show="hasAnyErrors"
-      role="alert"
-      class="mb-8 sm:mb-11 lg:mb-20"
-    >
-      <template #title>
-        Oops! Looks like you forgot to tell us something.
-      </template>
-
-      Please fill in the missing information so we can keep things cookin'!
-      <ul>
-        <li v-if="errors.bio">Please provide a bio in step 3.</li>
-        <li v-if="errors.jobDescription">
-          Please provide a job description in step 4.
-        </li>
-      </ul>
-    </BaseNotification>
-
     <form @submit.prevent="getCompletion" id="pitchForm">
+      <!-- Form errors -->
+      <BaseNotification
+        v-show="hasAnyErrors"
+        role="alert"
+        class="mb-8 sm:mb-11 lg:mb-20"
+      >
+        <template #title>
+          Oops! Looks like you forgot to tell us something.
+        </template>
+
+        Please fill in the missing information so we can keep things cookin'!
+        <ul>
+          <li v-if="errors.bio">Please provide a bio in step 3.</li>
+          <li v-if="errors.jobDescription">
+            Please provide a job description in step 4.
+          </li>
+        </ul>
+      </BaseNotification>
+
       <!-- Steps -->
       <div class="flex flex-col gap-10 sm:gap-20 lg:gap-4 lg:flex-row">
         <StepInput
@@ -97,6 +98,8 @@
       />
     </ul>
   </main>
+
+  <TheFooter class="mt-12" />
 </template>
 
 <script setup>
@@ -104,6 +107,7 @@ import { inject } from '@vercel/analytics'
 import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
+import TheFooter from './components/TheFooter.vue'
 import BaseButton from './components/BaseButton.vue'
 import BaseNotification from './components/BaseNotification.vue'
 import StepInput from './components/StepInput.vue'

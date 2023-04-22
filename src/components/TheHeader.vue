@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col items-center gap-4 sm:justify-center sm:flex-row">
+  <header
+    class="flex flex-col items-center gap-4 sm:justify-center sm:flex-row"
+  >
     <h1 class="text-2xl font-bold text-center sm:hidden">Pitch Pop Out</h1>
     <img
       class="w-44 sm:w-60 md:w-1/3 lg:w-1/2"
@@ -14,10 +16,10 @@
         Pitch Pop Out
       </h1>
 
-      <p class="w-64 text-center sm:w-72 lg:w-full lg:text-2xl">
+      <h2 class="w-64 text-center sm:w-72 lg:w-full lg:text-2xl">
         Transform your resume summary into a personalized
         <span class="font-bold">pop-out pitch!</span>
-      </p>
+      </h2>
       <p class="mt-4 lg:text-2xl">
         <span class="sr-only">It's as easy as ... </span>
         <span class="flex gap-4">
@@ -48,5 +50,5 @@
         </span>
       </p>
     </div>
-  </div>
+  </header>
 </template>
