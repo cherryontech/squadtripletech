@@ -3,7 +3,12 @@ import BaseLabel from './BaseLabel.vue';
 <template>
   <div class="flex flex-col justify-between">
     <BaseLabel :for="stepId" class="flex">
-      <span class="mr-9 sm:mr-14 lg:mr-16">
+      <span
+        class="mr-9 sm:mr-14 lg:mr-16"
+        :class="
+          hasError ? 'p-1 rounded-full outline outline-4 outline-red-700' : ''
+        "
+      >
         <StepNumber :stepNumber="stepNumber" />
       </span>
       <span>
@@ -15,6 +20,8 @@ import BaseLabel from './BaseLabel.vue';
     </BaseLabel>
 
     <BaseTextArea
+      :name="name"
+      required="true"
       :id="stepId"
       :modelValue="stepText"
       class="h-40 p-2 sm:h-64 lg:h-72"
@@ -36,6 +43,14 @@ const props = defineProps({
   stepText: {
     type: String,
     default: '',
+  },
+  name: {
+    type: String,
+    default: '',
+  },
+  hasError: {
+    type: Boolean,
+    default: false,
   },
 })
 
